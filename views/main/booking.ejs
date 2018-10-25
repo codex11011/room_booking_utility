@@ -1,0 +1,25 @@
+<% layout('layout') -%>
+<p>
+    <form action='/booking' method='GET' class='form-inline'>
+        <div class='form-group'>
+            <input class="form-control" type='text' name="search" placeholder="day">
+            <button class="btn btn-primary btn-large">Search</button>
+        </div>
+    </form>
+</p>
+<h3>LH</h3>
+<% x.forEach(function(x){ %>
+
+<div>
+    <p>
+        <%= x.day %>
+    </p>
+    <p>
+        <%= x.strttime+" "+x.endtime %>
+    </p>
+    <p>
+        <%= x.lt %>
+    </p>
+    <button class="btn btn-primary btn-large">Book</button>
+</div>
+<%})%>

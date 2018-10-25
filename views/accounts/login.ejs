@@ -1,0 +1,32 @@
+<% layout('layout') -%>
+<div class="container">
+  <div class="row">
+    <h1 style="padding-left:35%">LogIn </h1>
+    <hr>
+    <div class="container" style="width:30%;margin:0  auto;">
+      <%  if(message.length>0) {%>
+      <div class="alert alert-danger" role="alert">
+        <h5>
+          <%= message %>
+        </h5>
+        <%}%>
+      </div>
+    </div>
+
+
+    <div style="width:30%;margin:0  auto;">
+      <form action="/login" method="POST">
+        <p>
+          <input class="thumbnail" type="text" name="username" placeholder="username">
+        </p>
+
+        <p>
+          <input class="thumbnail" type="password" name="password" placeholder="password">
+        </p>
+        <p>
+          <p class="full">
+            <button type="submit" class="btn btn-info">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

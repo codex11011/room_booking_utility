@@ -1,0 +1,52 @@
+<% layout('layout') -%>
+
+<header class="jumbotron">
+  <div class="container">
+    <div class="row" text-center" style="display:flex; flex-wrap:wrap;">
+
+      <p>
+        <form action='/profile' method='GET' class='form-inline'>
+          <div class='form-group'>
+            <input class="form-control" type='text' name="search" placeholder="day">
+            <button class="btn btn-primary btn-large">Search</button>
+          </div>
+        </form>
+      </p>
+
+
+    </div>
+
+  </div>
+</header>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ul style="list-style-type: none">
+        <% x.forEach(function(x){ %>
+        <li class="list_slot_book" style="margin-top: 0px;margin-bottom: 30px;padding:10px">
+
+          <div class="col-md-3 col-sm-3 x">
+            <%= x.day %>
+          </div>
+          <div class="col-md-3 col-sm-3 y">
+            Lt -
+            <%= x.lt %>
+          </div>
+          <div class="col-md-3 col-sm-3 z">
+            <%= x.strttime+" --- "+x.endtime %>
+          </div>
+          <div class="col-md-3 col-sm-3">
+            <button class="btn btn-primary btn-small submit_list">Book</button>
+          </div>
+          <span style="display:none" class="w">
+            <%= x.bk %></span>
+        </li>
+        <span style="margin:10px"></span>
+        <%})%>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<% include ../partials/subjs.ejs %>
