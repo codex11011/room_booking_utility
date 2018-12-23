@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 
 <% layout('layout') -%>
 
 <div class="container" style="background-image:url('/img/lt.jpg');height: 100vh;background-position: center;width: 100%;">
   <div class="row";>
+=======
+<% layout('layout') -%>
+<div class="container">
+  <div class="row">
+    <h1 style="padding-left:35%">LogIn </h1>
+    <hr>
+>>>>>>> 3d1ea1508f56dc1e9d3367a8a10f3727d8569350
     <div class="container" style="width:30%;margin:0  auto;">
       <%  if(message.length>0) {%>
       <div class="alert alert-danger" role="alert">
@@ -12,6 +20,7 @@
         <%}%>
       </div>
     </div>
+<<<<<<< HEAD
     <div style="margin-top:5%;">
         <div style="color: black;margin-top:15px;"><h2><span style="background-color:white;border-radius:30px;padding:15px;font-weight: bold;box-shadow:3px 3px black;"><strong>Welcome to  LT Booking Portal</strong></span></h2></div>
           </div>
@@ -35,3 +44,23 @@
   </div>
  
 </div>
+=======
+
+
+    <div style="width:30%;margin:0  auto;">
+      <form action="/login" method="POST">
+        <p>
+          <input class="thumbnail" type="text" name="username" placeholder="username">
+        </p>
+
+        <p>
+          <input class="thumbnail" type="password" name="password" placeholder="password">
+        </p>
+        <p>
+          <p class="full">
+            <button type="submit" class="btn btn-info">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+>>>>>>> 3d1ea1508f56dc1e9d3367a8a10f3727d8569350

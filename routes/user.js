@@ -5,16 +5,22 @@ var passport = require("passport");
 var LocalStrategy = require("passport-local");
 var bodyparser = require("body-parser");
 let get_slots = require("../public/js/list_slot");
+<<<<<<< HEAD
 var cron = require("node-schedule");
 var path = require("path");
 var Intersect = require("../public/js/intersect");
 //var Recaptcha = require("express-recaptcha").Recaptcha;
 
 //var recaptcha = new Recaptcha("site key", "secret key");
+=======
+var path = require("path");
+
+>>>>>>> 3d1ea1508f56dc1e9d3367a8a10f3727d8569350
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+<<<<<<< HEAD
 var rule2 = new cron.RecurrenceRule();
 rule2.dayOfWeek = 1;
 rule2.hour = 20;
@@ -38,10 +44,14 @@ router.get("/", function(req, res) {
   });
 });
 router.get("/register", function(req, res) {
+=======
+router.get("/register", function (req, res) {
+>>>>>>> 3d1ea1508f56dc1e9d3367a8a10f3727d8569350
   //show signUp page
   res.render("accounts/register", { currentUser: req.user });
 });
 //login routes
+<<<<<<< HEAD
 router.get("/login", function(req, res) {
   //render login form
   res.render("accounts/login", {
@@ -121,6 +131,37 @@ router.get("/profile", isLoggedIn, function(req, res) {
         });
         
       }
+=======
+router.get("/login", function (req, res) {
+  //render login form
+  res.render("accounts/login", {
+    currentUser: req.user,
+    message: req.flash("error")
+  });
+});
+router.get('/profile', isLoggedIn, function (req, res) {
+
+  if (req.query.search) {
+    console.log("hi");
+    var regex = new RegExp(escapeRegex(req.query.search), 'gi');
+    Book.find({ day: regex }, function (err, x) {
+      if (err) {
+        console.log(err);
+      } else {
+        res.render("main/booking", { x: x, currentUser: req.user });
+      }
+    });
+  } else {
+    Book.find({}, function (err, x) {
+      if (err)
+        console.log(err);
+      else {
+        res.render("accounts/profile", { x: x, currentUser: req.user });
+        console.log(req.user);
+      }
+
+
+>>>>>>> 3d1ea1508f56dc1e9d3367a8a10f3727d8569350
     });
   }
 });
@@ -130,21 +171,37 @@ router.get("/profile", isLoggedIn, function(req, res) {
 //          console.log(err);
 //     else
 //       res.render('main/booking',{x:x,currentUser: req.user });
+<<<<<<< HEAD
 //   });
 
 //   //show signUp page
 // });
 router.post("/register", function(req, res) {
+=======
+//   });  
+
+//   //show signUp page
+// });
+router.post("/register", function (req, res) {
+>>>>>>> 3d1ea1508f56dc1e9d3367a8a10f3727d8569350
   //handling user sign up
   User.register(
     new User({ username: req.body.username }),
     req.body.password,
+<<<<<<< HEAD
     function(err, user) {
+=======
+    function (err, user) {
+>>>>>>> 3d1ea1508f56dc1e9d3367a8a10f3727d8569350
       if (err) {
         //req.flash("error","You logged out!!");
         res.render("accounts/register", { currentUser: req.user });
       } else {
+<<<<<<< HEAD
         passport.authenticate("local")(req, res, function() {
+=======
+        passport.authenticate("local")(req, res, function () {
+>>>>>>> 3d1ea1508f56dc1e9d3367a8a10f3727d8569350
           res.redirect("/profile");
         });
       }
@@ -157,13 +214,22 @@ router.post("/register", function(req, res) {
 //   res.render("accounts/profile", { currentUser: req.user });
 // });
 
+<<<<<<< HEAD
 router.get("/profile/new", isLoggedIn, function(req, res) {
+=======
+router.get("/profile/new", isLoggedIn, function (req, res) {
+>>>>>>> 3d1ea1508f56dc1e9d3367a8a10f3727d8569350
   res.render("main/lecture");
 });
 
 function escapeRegex(text) {
   return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+<<<<<<< HEAD
 }
+=======
+};
+
+>>>>>>> 3d1ea1508f56dc1e9d3367a8a10f3727d8569350
 
 //login logic
 //middleware
@@ -174,6 +240,7 @@ router.post(
     failureRedirect: "/login",
     failureFlash: true
   }),
+<<<<<<< HEAD
  
 );
 
@@ -181,11 +248,21 @@ router.get("/logout", function(req, res) {
   req.logout();
   req.flash("error", "You logged out!!");
   res.redirect("/login");
+=======
+  function (req, res) { }
+);
+
+router.get("/logout", function (req, res) {
+  req.logout();
+  req.flash("error", "You logged out!!");
+  res.redirect("/");
+>>>>>>> 3d1ea1508f56dc1e9d3367a8a10f3727d8569350
 });
 
 // router.get("/booking", isLoggedIn, function(req, res) {
 //   res.render("main/booking");
 // });
+<<<<<<< HEAD
 router.post("/profile", function(req, res) {
   //2. create route:to add new campground to db
   var day = req.body.day;
@@ -199,6 +276,18 @@ router.post("/profile", function(req, res) {
   var book_id = req.user._id;
   var intersect = req.user.intersect;
   get_slots(arr, lt, day, ask, book_id, res, intersect);
+=======
+router.post("/profile", function (req, res) {//2. create route:to add new campground to db 
+  var day = req.body.day;
+  var strttime = req.body.strttime;
+  var endtime = req.body.endtime;
+  let st_slot = strttime.split(':');
+  let et_slot = endtime.split(':');
+  let arr = (st_slot).concat(et_slot);
+  var lt = req.body.lt;
+  var ask = { id: req.user._id };
+  get_slots(arr, lt, day, ask, res);
+>>>>>>> 3d1ea1508f56dc1e9d3367a8a10f3727d8569350
   //   username:req.user.username};
   // var newBook = { day: day, strttime: strttime, endtime: endtime, lt: lt, ask: ask };
   // console.log(req.body);
@@ -209,6 +298,7 @@ router.post("/profile", function(req, res) {
   //     res.redirect("/profile");
   // })
 });
+<<<<<<< HEAD
 router.post("/update_bk",async (req, res) => {
   console.log("wwwww");
   let x = String(req.body.bk) === "true";
@@ -230,6 +320,29 @@ router.post("/update_bk",async (req, res) => {
   });
   s_obj.bk = y;
   await Intersect(s_obj);
+=======
+router.post("/update_bk", (req, res) => {
+  console.log(req.body);
+  let x = (String(req.body.bk) === "true")
+  let y = !x;
+  console.log(y);
+  let s_obj = {
+    "day": req.body.day,
+    "strttime": req.body.strttime.replace(" ", ""),
+    "endtime": req.body.endtime.replace(" ", ""),
+    "lt": req.body.lt
+  };
+
+  Book.findOneAndUpdate(s_obj, { $set: { "bk": y } }, { upsert: true, new: true }, (err, doc) => {
+    if (err) console.log(err);
+    else {
+      console.log(doc);
+    }
+  });
+
+  res.redirect("/")
+
+>>>>>>> 3d1ea1508f56dc1e9d3367a8a10f3727d8569350
 
   // Book.find({ "strttime": req.body.strttime.replace(" ", ""), "endtime": req.body.endtime.replace(" ", "") }, (err, doc) => {
   //   if (err) console.log(err);
@@ -237,7 +350,12 @@ router.post("/update_bk",async (req, res) => {
   //     console.log(doc);
   //   }
   // });
+<<<<<<< HEAD
 });
+=======
+
+})
+>>>>>>> 3d1ea1508f56dc1e9d3367a8a10f3727d8569350
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
